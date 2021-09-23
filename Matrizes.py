@@ -120,3 +120,24 @@ class Matrizes:
             [m1[i][j] + m2[i][j] for j in range(len(m1[0]))] for i in range(len(m1))
         ]
         return matrizSoma
+    
+    def produtoMatrizes(self, m1, m2):
+        '''
+        O produto entre duas matrizes A(m x n) e B(n x p) será uma matriz C(m x p) tal que cada elemento seu é um somatório do produto de cada elemento de uma matriz pelo equivalente na transposta da outra. Isto é:
+        '''
+        # confere se a quantidade de colunas de m1 é a quantidade de linhas da m2
+        if len(m1[0]) != len(m2):
+            raise(ValueError('A primeira matriz deve ter a mesma quantidade de colunas que a segunda tem de linhas!'))
+
+        # len(m1) quantidade de linhas de m1
+        # len(m2[0]) quantidade de colunas de m2
+        produto = [] # matriz produto
+        for i in range(len(m1)):
+            linhaProduto = [] # linha da matriz
+            for j in range(len(m2[0])):
+                soma = 0 # soma dos produtos no elemento na linha i e coluna j
+                for r in range(len(m2)):
+                    soma += m1[i][r]*m2[r][j]
+                linhaProduto.append(soma)
+            produto.append(linhaProduto)
+        return produto
