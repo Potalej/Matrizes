@@ -141,3 +141,21 @@ class Matrizes:
                 linhaProduto.append(soma)
             produto.append(linhaProduto)
         return produto
+    
+    def potenciaMatriz(self, m, expoente):
+        '''
+        Aqui é feita a exponenciação de matrizes quadradas à números naturais *. Um método melhor há de ser feito para a exponenciação real.
+        '''
+        # verifica se a matriz é quadrada
+        if len(m) != len(m[0]):
+            raise(ValueError('A matriz a ser elevada ao expoente deve ser quadrada.'))
+        # verifica se o expoente é natural e não nulo
+        if expoente <= 0 or expoente % 1 != 0:
+            raise(ValueError('O expoente deve ser um número natural não nulo.'))
+
+        matrizFinal = m
+        if expoente > 1:
+            for i in range(1, expoente):
+                matrizFinal = self.produtoMatrizes(m, matrizFinal)
+        
+        return matrizFinal

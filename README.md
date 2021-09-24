@@ -25,6 +25,7 @@
   * [Produto por Escalar](#escalar) 
   * [Soma](#soma)
   * [Produto](#produto)
+  * [Potência](#potência)
 
 <hr>
 
@@ -217,3 +218,24 @@ for i in range(len(m1)):
     produto.append(linhaProduto)
 return produto
 ```
+
+<h3 id="potencia">Potência</h3>
+
+Elevar uma matriz a um determinado valor pode assumir significados diferentes. No caso do método escrito até então, a potência de uma matriz se restringe aos números naturais (sem o zero) e se dá no produto da matriz por ela mesma na quantidade determinada.
+```python
+# verifica se a matriz é quadrada
+if len(m) != len(m[0]):
+    raise(ValueError('A matriz a ser elevada ao expoente deve ser quadrada.'))
+# verifica se o expoente é natural e não nulo
+if expoente <= 0 or expoente % 1 != 0:
+    raise(ValueError('O expoente deve ser um número natural não nulo.'))
+
+matrizFinal = m
+if expoente > 1:
+    for i in range(1, expoente):
+        matrizFinal = self.produtoMatrizes(m, matrizFinal)
+
+return matrizFinal
+```
+
+Uma exponenciação melhor se utilizando de expansões ainda há de ser feita.
